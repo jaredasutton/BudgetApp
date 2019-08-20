@@ -1,4 +1,4 @@
-const BudgetLine = require("../db/models/BudgetLine.js");
+const BudgetLine = require("../../db/models/BudgetLine.js");
 
 exports.create = (req, res) => {
   let { name, budgetId, category, expSpending } = req.body;
@@ -37,7 +37,7 @@ exports.update = (req, res) => {
 };
 
 exports.retrieve = (req, res) => {
-  let { budgetId } = req.body;
+  let { budgetId } = req.params;
   BudgetLine.retrieve(budgetId)
     .then(rows => res.status(200).send(rows))
     .catch(err => {

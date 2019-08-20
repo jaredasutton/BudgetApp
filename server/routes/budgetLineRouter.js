@@ -1,7 +1,7 @@
-let { Router: budgetLineRouter } = require("express");
+let budgetLineRouter = require("express").Router();
 let budgetLineController = require("../controllers/budgetLineController.js");
 
-budgetLineRouter.get("/", budgetLineController.retrieve);
+budgetLineRouter.get("/:id", budgetLineController.retrieve);
 budgetLineRouter.post("/", budgetLineController.create);
 
 module.exports = budgetLineRouter;

@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.use("/budget", routes.budgetRouter);
-app.use("/budgetLineRouter", routes.budgetLineRouter);
+app.use("/budgetline", routes.budgetLineRouter);
 
 app.listen(3000, () => {
   console.log("connected to port 3000");

@@ -1,4 +1,4 @@
-let { Router: budgetRouter } = require("express");
+let budgetRouter = require("express").Router();
 let budgetController = require("../controllers/budgetController.js");
 
 budgetRouter.get("/", budgetController.retrieve);

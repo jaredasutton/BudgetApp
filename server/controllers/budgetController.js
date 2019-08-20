@@ -1,4 +1,4 @@
-const Budget = require("../db/models/Budget.js");
+const Budget = require("../../db/models/Budget.js");
 
 exports.create = (req, res) => {
   let { name, startDate, endDate, expIncome, user } = req.body;
