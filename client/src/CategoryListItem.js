@@ -5,33 +5,38 @@ class CategoryListItem extends React.Component {
     super(props);
     this.state = {
       name: "",
-      spending: "",
-      //   nameArray: [],
-      //   spendingArray: [],
-      nameSpendingArray: []
+      spending: 0,
+      nameSpendingArray: [],
+      totalSpending: 0
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    e.target.name === "spending"
+      ? this.setState({ spending: Number(e.target.value) })
+      : this.setState({ name: e.target.value });
   }
 
   handleClick() {
     let nameSpending = this.state.nameSpendingArray.slice();
+    let total = this.state.totalSpending;
     nameSpending.push([this.state.name, this.state.spending]);
-    this.setState({ nameSpendingArray: nameSpending });
+    total += this.state.spending;
+    this.setState({ nameSpendingArray: nameSpending, totalSpending: total });
   }
 
   render() {
     return (
       <div>
         <div>
-          <h2>{this.props.item} Total:</h2>
+          <h2>
+            {this.props.item} Total: ${this.state.totalSpending}
+          </h2>
           {this.state.nameSpendingArray.map(item => {
             return (
-              <p>
+              <p key={item[0]}>
                 {item[0]} : ${item[1]}
               </p>
             );
