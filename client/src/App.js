@@ -1,6 +1,7 @@
 import React from "react";
 import BudgetPage from "./BudgetPage.js";
 import CreateBudgetPage from "./CreateBudgetPage.js";
+import SpecificBudgetPage from "./SpecificBudgetPage.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -8,10 +9,11 @@ class App extends React.Component {
     this.state = {
       plusClicked: false,
       createBudgetClicked: false,
-      specificBudget: false
+      specificBudgetClicked: false
     };
     this.handlePlusClick = this.handlePlusClick.bind(this);
     this.handleCreateBudgetClick = this.handleCreateBudgetClick.bind(this);
+    this.handleMainClick = this.handleMainClick.bind(this);
   }
 
   handlePlusClick() {
@@ -23,22 +25,31 @@ class App extends React.Component {
 
   handleCreateBudgetClick() {
     this.setState({
-      createBudgetClicked: !this.state.createBudgetClicked
+      createBudgetClicked: !this.state.createBudgetClicked,
+      specificBudgetClicked: !this.state.specificBudgetClicked
+    });
+  }
+
+  handleMainClick() {
+    this.setState({
+      specificBudgetClicked: !this.state.specificBudgetClicked,
+      plusClicked: !this.state.plusClicked
     });
   }
 
   render() {
-    const plusClicked = this.state.plusClicked;
-    const createBudgetClicked = this.state.createBudgetClicked;
     return (
       <div>
-        {!plusClicked ? (
+        {!this.state.plusClicked ? (
           <BudgetPage handlePlusClick={this.handlePlusClick} />
         ) : null}
-        {createBudgetClicked ? (
+        {this.state.createBudgetClicked ? (
           <CreateBudgetPage
             handleCreateBudgetClick={this.handleCreateBudgetClick}
           />
+        ) : null}
+        {this.state.specificBudgetClicked ? (
+          <SpecificBudgetPage handleMainClick={this.handleMainClick} />
         ) : null}
       </div>
     );
