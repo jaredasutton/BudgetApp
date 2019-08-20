@@ -1,13 +1,14 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const budgetRouter = require("./routes.js");
+const routes = require("./routes");
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.use("/budget");
+app.use("/budget", routes.budgetRouter);
+app.use("/budgetLineRouter", routes.budgetLineRouter);
 
 app.listen(3000, () => {
   console.log("connected to port 3000");
