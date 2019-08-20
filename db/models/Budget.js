@@ -10,7 +10,7 @@ exports.create = ({ name, startDate, endDate, expIncome, user }) => {
       if (err) {
         reject(err);
       } else {
-        resolve(results);
+        resolve(results.insertId);
       }
     });
   });
