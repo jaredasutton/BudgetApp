@@ -1,15 +1,45 @@
 import React from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class CreateBudgetPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      startDate: new Date()
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+    console.log(this.state.startDate);
   }
 
   render() {
     return (
       <div>
         <h1>Create a budget</h1>
+        <label htmlFor="name">Budget Name</label>
+        <input name="name" />
+        <label htmlFor="start time">Start Time</label>
+        <DatePicker
+          name="start time"
+          selected={this.state.startDate}
+          onChange={this.handleChange}
+        />
+        <label htmlFor="duration">Duration</label>
+        <select name="duration">
+          <option>1 Week</option>
+          <option>2 Week</option>
+          <option>1 Month</option>
+        </select>
+        <label htmlFor="Total Income">Total Income</label>
+        <input name="Total Income" />
+        <button onClick={this.props.handlePlusClick}>Submit</button>
       </div>
     );
   }

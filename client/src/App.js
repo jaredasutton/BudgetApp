@@ -22,7 +22,7 @@ class App extends React.Component {
         {plusClicked ? (
           <BudgetPage handlePlusClick={this.handlePlusClick} />
         ) : (
-          <CreateBudget />
+          <CreateBudget handlePlusClick={this.handlePlusClick} />
         )}
       </div>
     );
