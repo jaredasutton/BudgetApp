@@ -28,7 +28,7 @@ exports.delete = ({ id }) => {
   });
 };
 
-exports.retrieve = ({ budgetId }) => {
+exports.retrieve = budgetId => {
   let prepared = `SELECT * FROM budget_lines WHERE budget_id=?`;
   let values = [budgetId];
   return new Promise((resolve, reject) => {
