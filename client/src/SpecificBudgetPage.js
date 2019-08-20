@@ -1,4 +1,5 @@
 import React from "react";
+import CategoryListForm from "./CategoryListForm.js";
 
 class SpecificBudgetPage extends React.Component {
   constructor(props) {
@@ -25,22 +26,12 @@ class SpecificBudgetPage extends React.Component {
     return (
       <div>
         <h1>Budget #1</h1>
-
-        {this.state.categories.map(item => {
-          return (
-            <div key={item}>
-              <h2>{item}</h2>
-              {this.state.budgetLineInput === item ? <input /> : null}
-              <button
-                onClick={() => {
-                  this.handleClick(item);
-                }}
-              >
-                +
-              </button>
-            </div>
-          );
-        })}
+        <CategoryListForm
+          budgetLineInput={this.state.budgetLineInput}
+          categories={this.state.categories}
+          handleClick={this.handleClick}
+        />
+        <button onClick={this.props.handleMainClick}>Main</button>
       </div>
     );
   }
