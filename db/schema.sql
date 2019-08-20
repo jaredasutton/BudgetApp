@@ -20,5 +20,15 @@ CREATE TABLE budget_lines (
     budget_id int not null
 );
 
+CREATE TABLE spend_saves (
+    id int not null auto_increment primary key,
+    date_of datetime,
+    name varchar(255),
+    trans_type varchar(255),
+    category varchar(255),
+    subcat varchar(255),
+    acct_name varchar(255)
+);
+
 GRANT SELECT,INSERT,DROP,CREATE,UPDATE,DELETE ON budget.* TO 'student'@'localhost';
 FLUSH PRIVILEGES;
