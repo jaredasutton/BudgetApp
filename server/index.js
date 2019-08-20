@@ -9,6 +9,7 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.use("/budget", routes.budgetRouter);
 app.use("/budgetline", routes.budgetLineRouter);
+app.use("/spendsave", routes.spendSaveRouter);
 
 app.listen(3000, () => {
   console.log("connected to port 3000");
