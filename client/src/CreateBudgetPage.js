@@ -16,7 +16,6 @@ class CreateBudgetPage extends React.Component {
     this.setState({
       startDate: date
     });
-    console.log(this.state.startDate);
   }
 
   render() {
@@ -39,7 +38,7 @@ class CreateBudgetPage extends React.Component {
         </select>
         <label htmlFor="Total Income">Total Income</label>
         <input name="Total Income" />
-        <button onClick={this.props.handlePlusClick}>Submit</button>
+        <button onClick={this.props.handleCreateBudgetClick}>Submit</button>
       </div>
     );
   }
