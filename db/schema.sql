@@ -30,5 +30,12 @@ CREATE TABLE spend_saves (
     acct_name varchar(255)
 );
 
+CREATE TABLE payment_accounts (
+    id int not null auto_increment primary key,
+    name varchar(255),
+    acc_type varchar(255),
+    user_id int
+);
+
 GRANT SELECT,INSERT,DROP,CREATE,UPDATE,DELETE ON budget.* TO 'student'@'localhost';
 FLUSH PRIVILEGES;
