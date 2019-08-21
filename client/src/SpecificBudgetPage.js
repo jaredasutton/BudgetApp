@@ -26,7 +26,10 @@ class SpecificBudgetPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Budget #1</h1>
+        <h1>{this.props.budget.name}</h1>
+        <h2>
+          <strong>Expected Income:</strong> {this.props.budget.expected_income}
+        </h2>
         <CategoryListForm
           budgetLineInput={this.state.budgetLineInput}
           categories={this.state.categories}

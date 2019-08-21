@@ -11,6 +11,7 @@ class App extends React.Component {
       plusClicked: false,
       createBudgetClicked: false,
       specificBudgetClicked: false,
+      view: "ALL_BUDGETS",
       budgets: [],
       specificBudget: null
     };
@@ -30,8 +31,7 @@ class App extends React.Component {
 
   handlePlusClick() {
     this.setState({
-      plusClicked: !this.state.plusClicked,
-      createBudgetClicked: !this.createBudgetClicked
+      view: "CREATE_BUDGET"
     });
   }
 
@@ -42,8 +42,7 @@ class App extends React.Component {
       .post("/budget", { startDate, endDate, name, expIncome })
       .then(({ data }) => {
         this.setState({
-          createBudgetClicked: !this.state.createBudgetClicked,
-          specificBudgetClicked: !this.state.specificBudgetClicked,
+          view: "SPECIFIC_BUDGET",
           specificBudget: data
         });
       })
@@ -55,30 +54,36 @@ class App extends React.Component {
       .get("/budget")
       .then(({ data }) => {
         this.setState({
-          specificBudgetClicked: !this.state.specificBudgetClicked,
-          plusClicked: !this.state.plusClicked,
+          view: "ALL_BUDGETS",
           budgets: data
         });
       })
       .catch(console.error);
   }
 
+  changeSpecificBudget(budget) {
+    this.setState({ specificBudget: budget });
+  }
+
   render() {
     return (
       <div>
-        {!this.state.plusClicked ? (
+        {this.state.view === "ALL_BUDGETS" ? (
           <BudgetPage
             budgets={this.state.budgets}
             handlePlusClick={this.handlePlusClick}
           />
         ) : null}
-        {this.state.createBudgetClicked ? (
+        {this.state.view === "CREATE_BUDGET" ? (
           <CreateBudgetPage
             handleCreateBudgetClick={this.handleCreateBudgetClick}
           />
         ) : null}
-        {this.state.specificBudgetClicked ? (
-          <SpecificBudgetPage handleMainClick={this.handleMainClick} />
+        {this.state.view === "SPECIFIC_BUDGET" ? (
+          <SpecificBudgetPage
+            handleMainClick={this.handleMainClick}
+            budget={this.state.specificBudget}
+          />
         ) : null}
       </div>
     );
