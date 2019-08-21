@@ -1,10 +1,14 @@
 import React from "react";
+import BudgetBadge from "./BudgetBadge.js";
 
-const BudgetPage = props => {
+const BudgetPage = ({ handlePlusClick, budgets }) => {
   return (
     <div>
       <h1>My Budgets</h1>
-      <button onClick={props.handlePlusClick}>+</button>
+      {budgets.map(budget => (
+        <BudgetBadge key={budget.id} budget={budget} />
+      ))}
+      <button onClick={handlePlusClick}>+</button>
     </div>
   );
 };
