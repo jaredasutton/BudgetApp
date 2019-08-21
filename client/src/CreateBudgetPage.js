@@ -48,7 +48,6 @@ class CreateBudgetPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Create a budget</h1>
         <label htmlFor="name">Budget Name</label>
         <input
           name="name"

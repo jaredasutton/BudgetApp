@@ -67,8 +67,15 @@ class App extends React.Component {
   }
 
   render() {
+    let headerMsgs = {
+      ALL_BUDGETS: "My Budgets",
+      CREATE_BUDGET: "Create a New Budget",
+      SPECIFIC_BUDGET:
+        this.state.specificBudget && this.state.specificBudget.name
+    };
     return (
       <div>
+        <h1>{headerMsgs[this.state.view]}</h1>
         {this.state.view === "ALL_BUDGETS" ? (
           <BudgetPage
             budgets={this.state.budgets}

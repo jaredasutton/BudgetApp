@@ -72,7 +72,6 @@ class SpecificBudgetPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.props.budget.name}</h1>
         <h2>
           <strong>Expected Income:</strong> ${this.props.budget.expected_income}
         </h2>
