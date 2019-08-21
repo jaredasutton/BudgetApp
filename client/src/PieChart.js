@@ -11,16 +11,22 @@ class PieChartContainer extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      data: {
-        values: [
-          { x: "SomethingA", y: 2 },
-          { x: "SomethingB", y: 5 },
-          { x: "SomethingC", y: 3 }
-        ]
+  getChartData(chartData) {
+    let chartDataArray = [];
+    for (let key in chartData) {
+      let dataObject = {};
+      dataObject.x = key;
+      if (chartData[key][chartData[key].length - 1]) {
+        dataObject.y =
+          chartData[key][chartData[key].length - 1].expected_spending;
+      } else {
+        dataObject.y = 0;
       }
-    });
+      chartDataArray.push(dataObject);
+    }
+    console.log(chartDataArray);
+    const chartDataObj = { values: chartDataArray };
+    return chartDataObj;
   }
 
   handleClick() {
@@ -34,7 +40,8 @@ class PieChartContainer extends React.Component {
     return (
       <div>
         <PieChart
-          data={this.state.data}
+          // data={this.state.data}
+          data={this.getChartData(this.props.budgetLines)}
           width={600}
           height={400}
           margin={{ top: 10, bottom: 10, left: 100, right: 100 }}
