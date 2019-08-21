@@ -82,7 +82,11 @@ class SpecificBudgetPage extends React.Component {
           postNewBudgetLine={this.postNewBudgetLine}
           budgetLines={this.state.budgetLines}
         />
-        <PieChart />
+        <PieChart
+          budgetLines={this.state.budgetLines}
+          budget={this.props.budget}
+          categories={this.state.categories}
+        />
         <button onClick={this.props.handleMainClick}>Main</button>
       </div>
     );
