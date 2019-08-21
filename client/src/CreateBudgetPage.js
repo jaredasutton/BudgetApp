@@ -13,6 +13,8 @@ class CreateBudgetPage extends React.Component {
   }
 
   handleChange(date) {
+    console.log(date);
+    console.log(JSON.stringify(date).slice(1, 11));
     this.setState({
       startDate: date
     });

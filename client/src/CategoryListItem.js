@@ -35,11 +35,11 @@ class CategoryListItem extends React.Component {
             {this.props.item} Total: ${this.state.totalSpending}
           </h2>
           {this.state.nameSpendingArray.map(item => {
-            return (
+            return item[0] !== "" ? (
               <p key={item[0]}>
                 {item[0]} : ${item[1]}
               </p>
-            );
+            ) : null;
           })}
           {this.props.budgetLineInput === this.props.item ? (
             <div>

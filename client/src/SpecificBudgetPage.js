@@ -1,5 +1,6 @@
 import React from "react";
 import CategoryListForm from "./CategoryListForm.js";
+import PieChart from "./PieChart.js";
 
 class SpecificBudgetPage extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class SpecificBudgetPage extends React.Component {
           categories={this.state.categories}
           handleClick={this.handleClick}
         />
+        <PieChart />
         <button onClick={this.props.handleMainClick}>Main</button>
       </div>
     );
