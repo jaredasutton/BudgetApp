@@ -1,4 +1,16 @@
 body {
+  font-family: Arial, Helvetica, sans-serif;
   color: black;
   background-color: white;
+}
+
+.budget-badge {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+.budget-badge > h3,
+.budget-badge > h4 {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

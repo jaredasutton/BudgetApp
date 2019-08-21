@@ -8,7 +8,7 @@ exports.create = ({ name, budgetId, category, expSpending }) => {
       if (err) {
         reject(err);
       } else {
-        resolve(results);
+        resolve(results.insertId);
       }
     });
   });
@@ -31,11 +31,13 @@ exports.delete = ({ id }) => {
 exports.retrieve = budgetId => {
   let prepared = `SELECT * FROM budget_lines WHERE budget_id=?`;
   let values = [budgetId];
+  console.log(prepared);
   return new Promise((resolve, reject) => {
     db.query(prepared, values, (err, results, fields) => {
       if (err) {
         reject(err);
       } else {
+        console.log(results);
         resolve(results);
       }
     });

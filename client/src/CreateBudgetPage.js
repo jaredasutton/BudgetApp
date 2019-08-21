@@ -6,17 +6,42 @@ class CreateBudgetPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: new Date()
+      name: "",
+      startDate: new Date(),
+      endDate: (function() {
+        let endDate = new Date();
+        endDate.setDate(endDate.getDate() + 7);
+        return endDate;
+      })(),
+      expIncome: 0,
+      duration: "1 Week"
     };
-
     this.handleChange = this.handleChange.bind(this);
+    this.durationMapEndDate = this.durationMapEndDate.bind(this);
+  }
+
+  durationMapEndDate(duration, start = this.state.startDate) {
+    let durationMappings = { "1 Week": 7, "2 Week": 14, "1 Month": 28 };
+    let endDate = new Date(start);
+    endDate.setDate(endDate.getDate() + durationMappings[duration]);
+    return endDate;
+  }
+
+  handleInputChange(newStatePiece) {
+    if (newStatePiece.duration) {
+      let endDate = this.durationMapEndDate(newStatePiece.duration);
+      this.setState({ duration: newStatePiece.duration, endDate });
+    } else {
+      this.setState(newStatePiece);
+    }
   }
 
   handleChange(date) {
-    console.log(date);
-    console.log(JSON.stringify(date).slice(1, 11));
+    // console.log(date);
+    // console.log(JSON.stringify(date).slice(1, 11));
     this.setState({
-      startDate: date
+      startDate: date,
+      endDate: this.durationMapEndDate(this.state.duration, date)
     });
   }
 
@@ -25,7 +50,10 @@ class CreateBudgetPage extends React.Component {
       <div>
         <h1>Create a budget</h1>
         <label htmlFor="name">Budget Name</label>
-        <input name="name" />
+        <input
+          name="name"
+          onChange={e => this.handleInputChange({ name: e.target.value })}
+        />
         <label htmlFor="start time">Start Time</label>
         <DatePicker
           name="start time"
@@ -33,14 +61,22 @@ class CreateBudgetPage extends React.Component {
           onChange={this.handleChange}
         />
         <label htmlFor="duration">Duration</label>
-        <select name="duration">
-          <option>1 Week</option>
-          <option>2 Week</option>
-          <option>1 Month</option>
+        <select
+          name="duration"
+          onChange={e => this.handleInputChange({ duration: e.target.value })}
+        >
+          <option value="1 Week">1 Week</option>
+          <option value="2 Week">2 Week</option>
+          <option value="1 Month">1 Month</option>
         </select>
         <label htmlFor="Total Income">Total Income</label>
-        <input name="Total Income" />
-        <button onClick={this.props.handleCreateBudgetClick}>Submit</button>
+        <input
+          name="Total Income"
+          onChange={e => this.handleInputChange({ expIncome: e.target.value })}
+        />
+        <button onClick={() => this.props.handleCreateBudgetClick(this.state)}>
+          Submit
+        </button>
       </div>
     );
   }
