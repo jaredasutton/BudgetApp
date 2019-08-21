@@ -12,6 +12,12 @@ const CategoryListForm = props => {
             budgetLineInput={props.budgetLineInput}
             categories={props.categories}
             handleClick={props.handleClick}
+            postNewBudgetLine={props.postNewBudgetLine}
+            budgetLines={props.budgetLines[item]}
+            totalSpending={props.budgetLines[item].reduce(
+              (acc, curr) => acc + curr.expected_spending,
+              0
+            )}
           />
         );
       })}

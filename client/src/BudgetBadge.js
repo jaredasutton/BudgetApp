@@ -1,8 +1,8 @@
 import React from "react";
 
-const BudgetBadge = ({ budget }) => {
+const BudgetBadge = ({ budget, handleBudgetClick }) => {
   return (
-    <div className="budget-badge">
+    <div className="budget-badge" onClick={() => handleBudgetClick(budget)}>
       <h3>{budget.name}</h3>
       <h4>${budget.expected_income}</h4>
       <p>

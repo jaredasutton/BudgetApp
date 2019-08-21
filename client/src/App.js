@@ -18,6 +18,7 @@ class App extends React.Component {
     this.handlePlusClick = this.handlePlusClick.bind(this);
     this.handleCreateBudgetClick = this.handleCreateBudgetClick.bind(this);
     this.handleMainClick = this.handleMainClick.bind(this);
+    this.changeSpecificBudget = this.changeSpecificBudget.bind(this);
   }
 
   componentDidMount() {
@@ -62,7 +63,7 @@ class App extends React.Component {
   }
 
   changeSpecificBudget(budget) {
-    this.setState({ specificBudget: budget });
+    this.setState({ specificBudget: budget, view: "SPECIFIC_BUDGET" });
   }
 
   render() {
@@ -72,6 +73,7 @@ class App extends React.Component {
           <BudgetPage
             budgets={this.state.budgets}
             handlePlusClick={this.handlePlusClick}
+            handleBudgetClick={this.changeSpecificBudget}
           />
         ) : null}
         {this.state.view === "CREATE_BUDGET" ? (

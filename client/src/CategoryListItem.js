@@ -5,9 +5,7 @@ class CategoryListItem extends React.Component {
     super(props);
     this.state = {
       name: "",
-      spending: 0,
-      nameSpendingArray: [],
-      totalSpending: 0
+      spending: 0
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -32,14 +30,14 @@ class CategoryListItem extends React.Component {
       <div>
         <div>
           <h2>
-            {this.props.item} Total: ${this.state.totalSpending}
+            {this.props.item} Total: ${this.props.totalSpending}
           </h2>
-          {this.state.nameSpendingArray.map(item => {
-            return item[0] !== "" ? (
-              <p key={item[0]}>
-                {item[0]} : ${item[1]}
+          {this.props.budgetLines.map((item, i) => {
+            return (
+              <p key={item.name + i}>
+                {item.name}: ${item.expected_spending}
               </p>
-            ) : null;
+            );
           })}
           {this.props.budgetLineInput === this.props.item ? (
             <div>
@@ -48,14 +46,24 @@ class CategoryListItem extends React.Component {
                 onChange={this.handleChange}
                 name="name"
                 value={this.state.name}
-              />
+              />{" "}
               <label htmlFor="spending">Expected Spending</label>
               <input
                 onChange={this.handleChange}
                 name="spending"
                 value={this.state.value}
               />
-              <button onClick={this.handleClick}>Submit</button>
+              <button
+                onClick={() =>
+                  this.props.postNewBudgetLine({
+                    expSpending: this.state.spending,
+                    name: this.state.name,
+                    category: this.props.item
+                  })
+                }
+              >
+                Submit
+              </button>
             </div>
           ) : null}
           <button
