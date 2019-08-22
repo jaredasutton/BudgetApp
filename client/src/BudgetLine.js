@@ -4,6 +4,7 @@ import CreateSpendSaveForm from "./CreateSpendSaveForm.js";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 // import ListItem from "@material-ui/core/ListItem";
 
 // const useStyles = makeStyles(theme => ({
@@ -23,6 +24,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary
+  },
+  margin: {
+    margin: theme.spacing(1)
   }
 }));
 
@@ -48,8 +52,8 @@ let BudgetLine = ({
                 return `$${spendSave.amount} for ${spendSave.name}`;
               })
               .join(", ")}
-            {" - "}
-            {
+
+            {/* {
               <button
                 // href="#"
                 onClick={e => {
@@ -59,6 +63,19 @@ let BudgetLine = ({
               >
                 Add New Spending
               </button>
+            } */}
+            {
+              <Button
+                size="small"
+                color="primary"
+                className={classes.margin}
+                onClick={e => {
+                  setShowCreateSS(true);
+                  setCreateSSXY([e.clientX + "px", e.clientY + "px"]);
+                }}
+              >
+                Add New Spending
+              </Button>
             }
           </small>
           {showCreateSS && (
