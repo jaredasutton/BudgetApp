@@ -5,10 +5,6 @@ import { PieChart } from "react-d3-components";
 class PieChartContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: { values: [] }
-    };
-    this.handleClick = this.handleClick.bind(this);
   }
 
   getChartData(chartData) {
@@ -16,23 +12,19 @@ class PieChartContainer extends React.Component {
     for (let key in chartData) {
       let dataObject = {};
       dataObject.x = key;
-      if (chartData[key][chartData[key].length - 1]) {
-        dataObject.y =
-          chartData[key][chartData[key].length - 1].expected_spending;
+      if (chartData[key].length) {
+        let reducedData = chartData[key].reduce((a, b) => {
+          return {
+            expected_spending: a.expected_spending + b.expected_spending
+          };
+        });
+        dataObject.y = reducedData.expected_spending;
       } else {
         dataObject.y = 0;
       }
       chartDataArray.push(dataObject);
     }
-    console.log(chartDataArray);
-    const chartDataObj = { values: chartDataArray };
-    return chartDataObj;
-  }
-
-  handleClick() {
-    const chartValue = this.state.data.values.slice();
-    chartValue.push({ x: "placeHolder", y: 2 });
-    this.setState({ data: { values: chartValue } });
+    return { values: chartDataArray };
   }
 
   render() {
@@ -40,14 +32,12 @@ class PieChartContainer extends React.Component {
     return (
       <div>
         <PieChart
-          // data={this.state.data}
           data={this.getChartData(this.props.budgetLines)}
           width={600}
           height={400}
           margin={{ top: 10, bottom: 10, left: 100, right: 100 }}
           sort={sort}
         />
-        <button onClick={this.handleClick}>Add</button>
       </div>
     );
   }
