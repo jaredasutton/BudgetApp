@@ -21,7 +21,7 @@ const CategoryListForm = props => {
             postNewSpendSave={(ssObj, subcat) =>
               props.postNewSpendSave(ssObj, subcat, item)
             }
-            spendSaves={props.spendSaves[item]}
+            spendSaves={props.spendSaves[item] || {}}
             paymentAccounts={props.paymentAccounts}
           />
         );

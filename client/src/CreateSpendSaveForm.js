@@ -29,7 +29,7 @@ class CreateSpendSaveForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="create-spend-save">
         <label htmlFor="name">What was it for? </label>
         <input
           name="name"
@@ -58,7 +58,12 @@ class CreateSpendSaveForm extends React.Component {
           name="amount"
           onChange={e => this.handleInputChange({ amount: e.target.value })}
         />
-        <button onClick={() => this.props.postNewSpendSave(this.state)}>
+        <button
+          onClick={() => {
+            this.props.postNewSpendSave(this.state);
+            this.props.exit();
+          }}
+        >
           Submit
         </button>
       </div>

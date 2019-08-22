@@ -42,11 +42,7 @@ class CategoryListItem extends React.Component {
                   this.props.postNewSpendSave(ssObj, budgetLine.name)
                 }
                 paymentAccounts={this.props.paymentAccounts}
-                spendSaves={
-                  this.props.spendSaves
-                    ? this.props.spendSaves[budgetLine.name]
-                    : []
-                }
+                spendSaves={this.props.spendSaves[budgetLine.name] || []}
               />
             );
           })}

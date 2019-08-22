@@ -8,6 +8,8 @@ let BudgetLine = ({
   spendSaves,
   paymentAccounts
 }) => {
+  const [showCreateSS, setShowCreateSS] = React.useState(false);
+  const [createSSXY, setCreateSSXY] = React.useState(["0px", "0px"]);
   return (
     <div className="budget-line">
       {budgetLine.name}: ${budgetLine.expected_spending}{" "}
@@ -17,28 +19,27 @@ let BudgetLine = ({
             return `$${spendSave.amount} for ${spendSave.name}`;
           })
           .join(", ")}
+        {" - "}
         {
           <a
             href="#"
             onClick={e => {
-              let createSpendSave = document.getElementById(
-                "create-spend-save"
-              );
-              createSpendSave.style.left = e.clientX + "px";
-              createSpendSave.style.top = e.clientY + "px";
-              ReactDOM.render(
-                <CreateSpendSaveForm
-                  postNewSpendSave={postNewSpendSave}
-                  paymentAccounts={paymentAccounts}
-                />,
-                createSpendSave
-              );
+              setShowCreateSS(true);
+              setCreateSSXY([e.clientX + "px", e.clientY + "px"]);
             }}
           >
             Add New Spending
           </a>
         }
       </small>
+      {showCreateSS && (
+        <CreateSpendSaveForm
+          postNewSpendSave={postNewSpendSave}
+          paymentAccounts={paymentAccounts}
+          style={{ top: createSSXY[1], left: createSSXY[0] }}
+          exit={() => setShowCreateSS(false)}
+        />
+      )}
     </div>
   );
 };
