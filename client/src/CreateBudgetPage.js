@@ -2,6 +2,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TextField from "./TextField.js";
+import Calendar from "./Calendar.js";
 
 class CreateBudgetPage extends React.Component {
   constructor(props) {
@@ -78,6 +79,10 @@ class CreateBudgetPage extends React.Component {
         <TextField
           handleInputChange={this.handleInputChange}
           name={this.state.name}
+        />
+        <Calendar
+          startDate={this.state.startDate}
+          handleChange={this.handleChange}
         />
         <button onClick={() => this.props.handleCreateBudgetClick(this.state)}>
           Submit
