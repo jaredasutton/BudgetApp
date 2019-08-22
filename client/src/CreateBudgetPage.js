@@ -1,6 +1,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import TextField from "./TextField.js";
 
 class CreateBudgetPage extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class CreateBudgetPage extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.durationMapEndDate = this.durationMapEndDate.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   durationMapEndDate(duration, start = this.state.startDate) {
@@ -48,7 +50,7 @@ class CreateBudgetPage extends React.Component {
   render() {
     return (
       <div>
-        <label htmlFor="name">Budget Name</label>
+        {/* <label htmlFor="name">Budget Name</label>
         <input
           name="name"
           onChange={e => this.handleInputChange({ name: e.target.value })}
@@ -72,6 +74,10 @@ class CreateBudgetPage extends React.Component {
         <input
           name="Total Income"
           onChange={e => this.handleInputChange({ expIncome: e.target.value })}
+        /> */}
+        <TextField
+          handleInputChange={this.handleInputChange}
+          name={this.state.name}
         />
         <button onClick={() => this.props.handleCreateBudgetClick(this.state)}>
           Submit
