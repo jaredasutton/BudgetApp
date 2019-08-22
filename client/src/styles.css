@@ -33,12 +33,9 @@ body {
 }
 
 .budget-line {
-  /* margin-left: 20px; */
 }
 
 #create-spend-save {
-  /* z-index: 1000000;
-  position: absolute; */
   background: white;
   border: 1px solid gray;
   padding: 5px;

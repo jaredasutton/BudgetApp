@@ -31,7 +31,7 @@ exports.delete = ({ id }) => {
 };
 
 exports.retrieve = () => {
-  let prepared = `SELECT * FROM budgets`;
+  let prepared = `SELECT * FROM budgets ORDER BY start_date DESC`;
   return new Promise((resolve, reject) => {
     db.query(prepared, (err, results, fields) => {
       if (err) {

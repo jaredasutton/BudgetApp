@@ -6,18 +6,6 @@ import { List } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     flexGrow: 1,
-//     backgroundColor: theme.palette.background.paper,
-//     display: "flex",
-//     height: 224
-//   },
-//   tabs: {
-//     borderRight: `1px solid ${theme.palette.divider}`
-//   }
-// }));
-
 const useStyles = makeStyles(theme => ({
   fab: {
     margin: theme.spacing(1)
@@ -96,13 +84,6 @@ let CategoryListItem = props => {
           />
         ) : null}
 
-        {/* <button
-          onClick={() => {
-            props.handleClick(props.item);
-          }}
-        >
-          +
-        </button> */}
         <Fab
           color="primary"
           aria-label="add"

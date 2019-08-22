@@ -29,16 +29,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function OutlinedTextFields(props) {
   const classes = useStyles();
-  //   const [values, setValues] = React.useState({
-  //     name: "",
-  //     age: "",
-  //     multiline: "Controlled",
-  //     currency: "EUR"
-  //   });
-
-  //   const handleChange = name => event => {
-  //     setValues({ ...values, [name]: event.target.value });
-  //   };
 
   return (
     <form className={classes.container} noValidate autoComplete="off">

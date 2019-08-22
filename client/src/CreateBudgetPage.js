@@ -39,8 +39,6 @@ class CreateBudgetPage extends React.Component {
   }
 
   handleChange(date) {
-    // console.log(date);
-    // console.log(JSON.stringify(date).slice(1, 11));
     this.setState({
       startDate: date,
       endDate: this.durationMapEndDate(this.state.duration, date)
@@ -50,31 +48,6 @@ class CreateBudgetPage extends React.Component {
   render() {
     return (
       <div>
-        {/* <label htmlFor="name">Budget Name</label>
-        <input
-          name="name"
-          onChange={e => this.handleInputChange({ name: e.target.value })}
-        />
-        <label htmlFor="start time">Start Time</label>
-        <DatePicker
-          name="start time"
-          selected={this.state.startDate}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="duration">Duration</label>
-        <select
-          name="duration"
-          onChange={e => this.handleInputChange({ duration: e.target.value })}
-        >
-          <option value="1 Week">1 Week</option>
-          <option value="2 Week">2 Week</option>
-          <option value="1 Month">1 Month</option>
-        </select>
-        <label htmlFor="Total Income">Total Income</label>
-        <input
-          name="Total Income"
-          onChange={e => this.handleInputChange({ expIncome: e.target.value })}
-        /> */}
         <Paper>
           <TextField
             handleInputChange={this.handleInputChange}
@@ -87,17 +60,6 @@ class CreateBudgetPage extends React.Component {
             handleCreateBudgetClick={this.props.handleCreateBudgetClick}
           />
         </Paper>
-        {/* <Calendar
-          startDate={this.state.startDate}
-          handleChange={this.handleChange}
-        /> */}
-        {/* <button onClick={() => this.props.handleCreateBudgetClick(this.state)}>
-          Submit
-        </button> */}
-        {/* <SubmitButton
-          budgetState={this.state}
-          handleCreateBudgetClick={this.props.handleCreateBudgetClick}
-        /> */}
       </div>
     );
   }

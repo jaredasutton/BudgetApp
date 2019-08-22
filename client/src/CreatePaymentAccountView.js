@@ -39,33 +39,6 @@ let CreatePaymentAccountView = props => {
               );
             })}
             {newPayment ? (
-              // <div>
-              //   <label htmlFor="name">Name</label>
-              //   <input
-              //     onChange={e => setName(e.target.value)}
-              //     name="name"
-              //     value={name}
-              //   />{" "}
-              //   <label htmlFor="accType" />
-              //   <select
-              //     onChange={e => setAccType(e.target.value)}
-              //     name="accType"
-              //     value={accType}
-              //   >
-              //     <option value="Debit/Checking">Debit/Checking</option>
-              //     <option value="Credit">Credit</option>
-              //   </select>
-              //   <button
-              //     onClick={() =>
-              //       props.postNewPaymentAccount({
-              //         name: name,
-              //         accType: accType
-              //       })
-              //     }
-              //   >
-              //     Submit
-              //   </button>
-              // </div>
               <CreatePaymentAccountForm
                 name={name}
                 accType={accType}

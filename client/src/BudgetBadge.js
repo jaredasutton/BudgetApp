@@ -18,16 +18,6 @@ const BudgetBadge = ({ budget, handleBudgetClick }) => {
   const classes = useStyles();
 
   return (
-    // <div className="budget-badge" onClick={() => handleBudgetClick(budget)}>
-    //   <h3>{budget.name}</h3>
-    //   <h4>${budget.expected_income}</h4>
-    //   <p>
-    //     <strong>Start:</strong> {new Date(budget.start_date).toString()}
-    //   </p>
-    //   <p>
-    //     <strong>End:</strong> {new Date(budget.end_date).toString()}
-    //   </p>
-    // </div>
     <div className={classes.root} onClick={() => handleBudgetClick(budget)}>
       <Grid container spacing={3}>
         <Grid item xs={12}>

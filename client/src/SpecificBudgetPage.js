@@ -122,9 +122,6 @@ class SpecificBudgetPage extends React.Component {
   render() {
     return (
       <div>
-        {/* <h2>
-          <strong>Expected Income:</strong> ${this.props.budget.expected_income}
-        </h2> */}
         <PieChart
           budgetLines={this.state.budgetLines}
           budget={this.props.budget}

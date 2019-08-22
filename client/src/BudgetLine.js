@@ -5,17 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-// import ListItem from "@material-ui/core/ListItem";
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     flexGrow: 1
-//   },
-//   paper: {
-//     padding: theme.spacing(2),
-//     color: theme.palette.text.secondary
-//   }
-// }));
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -52,18 +42,6 @@ let BudgetLine = ({
                 return `$${spendSave.amount} for ${spendSave.name}`;
               })
               .join(", ")}
-
-            {/* {
-              <button
-                // href="#"
-                onClick={e => {
-                  setShowCreateSS(true);
-                  setCreateSSXY([e.clientX + "px", e.clientY + "px"]);
-                }}
-              >
-                Add New Spending
-              </button>
-            } */}
             {
               <Button
                 size="small"
@@ -87,7 +65,6 @@ let BudgetLine = ({
             />
           )}
         </Paper>
-        {/* </ListItem> */}
       </Grid>
     </Grid>
   );
