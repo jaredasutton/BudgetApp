@@ -2,6 +2,7 @@ const SpendSave = require("../../db/models/SpendSave.js");
 
 exports.create = (req, res) => {
   let { name, date_of, category, payment_id, subcat, amount } = req.body;
+  date_of = date_of.slice(0, 10);
   if (
     [name, date_of, category, payment_id, subcat, amount].some(
       value => value === undefined

@@ -56,7 +56,7 @@ class CreateSpendSaveForm extends React.Component {
         <label htmlFor="amount">Amount: </label>
         <input
           name="amount"
-          onChange={e => this.handleInputChange({ expIncome: e.target.value })}
+          onChange={e => this.handleInputChange({ amount: e.target.value })}
         />
         <button onClick={() => this.props.postNewSpendSave(this.state)}>
           Submit

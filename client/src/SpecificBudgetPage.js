@@ -91,9 +91,20 @@ class SpecificBudgetPage extends React.Component {
       .catch(console.error);
   }
 
-  postNewSpendSave({ name, date_of, payment_id }, subcat, category) {
+  postNewSpendSave(
+    { name, dateOf: date_of, paymentId: payment_id, amount },
+    subcat,
+    category
+  ) {
     axios
-      .post("/spendsave", { name, date_of, payment_id, category, subcat })
+      .post("/spendsave", {
+        name,
+        date_of,
+        payment_id,
+        category,
+        subcat,
+        amount
+      })
       .then(({ data }) => this.getSpendSaves())
       .catch(console.error);
   }

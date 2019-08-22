@@ -39,7 +39,7 @@ class CategoryListItem extends React.Component {
                 key={budgetLine.name + i}
                 budgetLine={budgetLine}
                 postNewSpendSave={ssObj =>
-                  this.props.postNewSpendSave(ssObj, budgetLine)
+                  this.props.postNewSpendSave(ssObj, budgetLine.name)
                 }
                 paymentAccounts={this.props.paymentAccounts}
                 spendSaves={
