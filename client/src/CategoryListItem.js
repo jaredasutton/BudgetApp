@@ -3,16 +3,27 @@ import BudgetLine from "./BudgetLine.js";
 import CreateNewBudgetLineItem from "./CreateNewBudgetLineItem.js";
 import { makeStyles } from "@material-ui/core/styles";
 import { List } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+import Fab from "@material-ui/core/Fab";
+
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     flexGrow: 1,
+//     backgroundColor: theme.palette.background.paper,
+//     display: "flex",
+//     height: 224
+//   },
+//   tabs: {
+//     borderRight: `1px solid ${theme.palette.divider}`
+//   }
+// }));
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-    display: "flex",
-    height: 224
+  fab: {
+    margin: theme.spacing(1)
   },
-  tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`
+  extendedIcon: {
+    marginRight: theme.spacing(1)
   }
 }));
 
@@ -25,6 +36,7 @@ let CategoryListItem = props => {
       ? setSpending(Number(e.target.value))
       : setName(e.target.value);
   };
+  const classes = useStyles();
 
   return (
     <div>
@@ -59,13 +71,28 @@ let CategoryListItem = props => {
             handleChange={handleChange}
           />
         ) : null}
-        <button
+
+        {/* <button
           onClick={() => {
             props.handleClick(props.item);
           }}
         >
           +
-        </button>
+        </button> */}
+        <Fab
+          color="primary"
+          aria-label="add"
+          className={classes.fab}
+          size="small"
+        >
+          <AddIcon
+            onClick={() => {
+              props.handleClick(props.item);
+            }}
+          >
+            +
+          </AddIcon>
+        </Fab>
       </div>
     </div>
   );
