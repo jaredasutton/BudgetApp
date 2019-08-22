@@ -2,6 +2,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: black;
   background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  border: 1px dashed lightcyan;
 }
 
 .budget-badge {
@@ -13,4 +16,29 @@ body {
 .budget-badge > h4 {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.gear {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  border: 1px solid white;
+}
+
+.gear:hover {
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+.budget-line {
+  margin-left: 20px;
+}
+
+#create-spend-save {
+  z-index: 1000000;
+  position: absolute;
+  background: white;
+  border: 1px solid gray;
+  padding: 5px;
 }

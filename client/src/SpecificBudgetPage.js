@@ -23,15 +23,19 @@ class SpecificBudgetPage extends React.Component {
         Entertainment: [],
         Savings: [],
         Misc: []
-      }
+      },
+      spendSaves: {}
     };
     this.handleClick = this.handleClick.bind(this);
     this.getBudgetLines = this.getBudgetLines.bind(this);
     this.postNewBudgetLine = this.postNewBudgetLine.bind(this);
+    this.getSpendSaves = this.getSpendSaves.bind(this);
+    this.postNewSpendSave = this.postNewSpendSave.bind(this);
   }
 
   componentDidMount() {
     this.getBudgetLines(this.props.budget.id);
+    this.getSpendSaves();
   }
 
   getBudgetLines(budgetId) {
@@ -65,6 +69,46 @@ class SpecificBudgetPage extends React.Component {
       .catch(console.error);
   }
 
+  getSpendSaves() {
+    let newStateSS = {};
+    let { start_date: startDate, end_date: endDate } = this.props.budget;
+    axios
+      .get(`/spendsave?startDate=${startDate}&endDate=${endDate}`)
+      .then(({ data }) => {
+        data.forEach((spendSave, ssI) => {
+          if (!newStateSS[spendSave.category]) {
+            newStateSS[spendSave.category] = {};
+          }
+          if (!newStateSS[spendSave.category][spendSave.subcat]) {
+            newStateSS[spendSave.category][spendSave.subcat] = [];
+          }
+          newStateSS[spendSave.category][spendSave.subcat].push(spendSave);
+          if (ssI === data.length - 1) {
+            this.setState({ spendSaves: newStateSS });
+          }
+        });
+      })
+      .catch(console.error);
+  }
+
+  postNewSpendSave(
+    { name, dateOf: date_of, paymentId: payment_id, amount },
+    subcat,
+    category
+  ) {
+    axios
+      .post("/spendsave", {
+        name,
+        date_of,
+        payment_id,
+        category,
+        subcat,
+        amount
+      })
+      .then(({ data }) => this.getSpendSaves())
+      .catch(console.error);
+  }
+
   handleClick(string) {
     this.setState({ budgetLineInput: string });
   }
@@ -81,6 +125,9 @@ class SpecificBudgetPage extends React.Component {
           handleClick={this.handleClick}
           postNewBudgetLine={this.postNewBudgetLine}
           budgetLines={this.state.budgetLines}
+          paymentAccounts={this.props.paymentAccounts}
+          postNewSpendSave={this.postNewSpendSave}
+          spendSaves={this.state.spendSaves}
         />
         <PieChart
           budgetLines={this.state.budgetLines}

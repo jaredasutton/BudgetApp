@@ -2,6 +2,7 @@ import React from "react";
 import BudgetPage from "./BudgetPage.js";
 import CreateBudgetPage from "./CreateBudgetPage.js";
 import SpecificBudgetPage from "./SpecificBudgetPage.js";
+import CreatePaymentAccountView from "./CreatePaymentAccountView.js";
 import axios from "axios";
 
 class App extends React.Component {
@@ -13,12 +14,14 @@ class App extends React.Component {
       specificBudgetClicked: false,
       view: "ALL_BUDGETS",
       budgets: [],
-      specificBudget: null
+      specificBudget: null,
+      paymentAccounts: []
     };
     this.handlePlusClick = this.handlePlusClick.bind(this);
     this.handleCreateBudgetClick = this.handleCreateBudgetClick.bind(this);
     this.handleMainClick = this.handleMainClick.bind(this);
     this.changeSpecificBudget = this.changeSpecificBudget.bind(this);
+    this.postNewPaymentAccount = this.postNewPaymentAccount.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +30,10 @@ class App extends React.Component {
       .then(({ data }) => {
         this.setState({ budgets: data });
       })
+      .catch(console.error);
+    axios
+      .get("/paymentaccount")
+      .then(({ data }) => this.setState({ paymentAccounts: data }))
       .catch(console.error);
   }
 
@@ -66,16 +73,41 @@ class App extends React.Component {
     this.setState({ specificBudget: budget, view: "SPECIFIC_BUDGET" });
   }
 
+  getPaymentAccounts() {
+    axios
+      .get(`/paymentaccount`)
+      .then(({ data }) => {
+        this.setState({ paymentAccounts: data });
+      })
+      .catch(console.error);
+  }
+
+  postNewPaymentAccount({ name, accType }) {
+    axios
+      .post("/paymentaccount", {
+        name,
+        accType
+      })
+      .then(({ data }) => this.getPaymentAccounts())
+      .catch(console.error);
+  }
+
   render() {
     let headerMsgs = {
       ALL_BUDGETS: "My Budgets",
       CREATE_BUDGET: "Create a New Budget",
       SPECIFIC_BUDGET:
-        this.state.specificBudget && this.state.specificBudget.name
+        this.state.specificBudget && this.state.specificBudget.name,
+      ADD_PAYMENT_ACCOUNT: "Payment Accounts"
     };
     return (
       <div>
         <h1>{headerMsgs[this.state.view]}</h1>
+        <img
+          onClick={() => this.setState({ view: "ADD_PAYMENT_ACCOUNT" })}
+          src="/gear.png"
+          className="gear"
+        />
         {this.state.view === "ALL_BUDGETS" ? (
           <BudgetPage
             budgets={this.state.budgets}
@@ -92,6 +124,13 @@ class App extends React.Component {
           <SpecificBudgetPage
             handleMainClick={this.handleMainClick}
             budget={this.state.specificBudget}
+            paymentAccounts={this.state.paymentAccounts}
+          />
+        ) : null}
+        {this.state.view === "ADD_PAYMENT_ACCOUNT" ? (
+          <CreatePaymentAccountView
+            paymentAccounts={this.state.paymentAccounts}
+            postNewPaymentAccount={this.postNewPaymentAccount}
           />
         ) : null}
       </div>

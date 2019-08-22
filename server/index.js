@@ -12,6 +12,7 @@ app.use(morgan("combined"));
 app.use("/budget", routes.budgetRouter);
 app.use("/budgetline", routes.budgetLineRouter);
 app.use("/spendsave", routes.spendSaveRouter);
+app.use("/paymentaccount", routes.paymentAccountRouter);
 
 app.listen(3000, () => {
   console.log("connected to port 3000");

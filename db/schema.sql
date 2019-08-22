@@ -24,10 +24,17 @@ CREATE TABLE spend_saves (
     id int not null auto_increment primary key,
     date_of datetime,
     name varchar(255),
-    trans_type varchar(255),
+    payment_id int,
     category varchar(255),
     subcat varchar(255),
-    acct_name varchar(255)
+    amount float
+);
+
+CREATE TABLE payment_accounts (
+    id int not null auto_increment primary key,
+    name varchar(255),
+    acc_type varchar(255),
+    user_id int
 );
 
 GRANT SELECT,INSERT,DROP,CREATE,UPDATE,DELETE ON budget.* TO 'student'@'localhost';
