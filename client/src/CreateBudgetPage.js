@@ -1,5 +1,4 @@
 import React from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TextField from "./TextField.js";
 
@@ -78,10 +77,24 @@ class CreateBudgetPage extends React.Component {
         <TextField
           handleInputChange={this.handleInputChange}
           name={this.state.name}
+          expIncome={this.state.expIncome}
+          duration={this.state.duration}
+          startDate={this.state.startDate}
+          handleChange={this.handleChange}
+          budgetState={this.state}
+          handleCreateBudgetClick={this.props.handleCreateBudgetClick}
         />
-        <button onClick={() => this.props.handleCreateBudgetClick(this.state)}>
+        {/* <Calendar
+          startDate={this.state.startDate}
+          handleChange={this.handleChange}
+        /> */}
+        {/* <button onClick={() => this.props.handleCreateBudgetClick(this.state)}>
           Submit
-        </button>
+        </button> */}
+        {/* <SubmitButton
+          budgetState={this.state}
+          handleCreateBudgetClick={this.props.handleCreateBudgetClick}
+        /> */}
       </div>
     );
   }

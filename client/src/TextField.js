@@ -3,25 +3,12 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
+import Calendar from "./Calendar.js";
+import SubmitButton from "./SubmitButton.js";
 
-const currencies = [
-  {
-    value: "USD",
-    label: "$"
-  },
-  {
-    value: "EUR",
-    label: "€"
-  },
-  {
-    value: "BTC",
-    label: "฿"
-  },
-  {
-    value: "JPY",
-    label: "¥"
-  }
-];
+import Grid from "@material-ui/core/Grid";
+
+const timeFrame = ["1 Week", "2 Week", "1 Month"];
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -64,6 +51,47 @@ export default function OutlinedTextFields(props) {
         margin="normal"
         variant="outlined"
       />
+      <TextField
+        id="outlined-select-time"
+        select
+        label="Select"
+        className={classes.textField}
+        value={props.duration}
+        onChange={e => props.handleInputChange({ duration: e.target.value })}
+        SelectProps={{
+          MenuProps: {
+            className: classes.menu
+          }
+        }}
+        helperText="Please select your time frame"
+        margin="normal"
+        variant="outlined"
+      >
+        {timeFrame.map(option => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </TextField>
+      <TextField
+        id="outlined-name"
+        label="Expected Income"
+        className={classes.textField}
+        value={props.expIncome}
+        onChange={e => props.handleInputChange({ expIncome: e.target.value })}
+        margin="normal"
+        variant="outlined"
+      />
+
+      <Calendar startDate={props.startDate} handleChange={props.handleChange} />
+
+      <Grid container justify="center">
+        <SubmitButton
+          budgetState={props.budgetState}
+          handleCreateBudgetClick={props.handleCreateBudgetClick}
+          style={{ justifyContent: "center" }}
+        />
+      </Grid>
     </form>
   );
 }
