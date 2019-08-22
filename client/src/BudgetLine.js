@@ -50,15 +50,15 @@ let BudgetLine = ({
               .join(", ")}
             {" - "}
             {
-              <a
-                href="#"
+              <button
+                // href="#"
                 onClick={e => {
                   setShowCreateSS(true);
                   setCreateSSXY([e.clientX + "px", e.clientY + "px"]);
                 }}
               >
                 Add New Spending
-              </a>
+              </button>
             }
           </small>
           {showCreateSS && (

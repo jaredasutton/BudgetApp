@@ -2,6 +2,8 @@ import React from "react";
 import CreatePaymentAccountForm from "./CreatePaymentAccountForm.js";
 import { Grid, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import AddIcon from "@material-ui/icons/Add";
+import Fab from "@material-ui/core/Fab";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -11,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary
+  },
+  fab: {
+    margin: theme.spacing(1)
   }
 }));
 
@@ -74,13 +79,20 @@ let CreatePaymentAccountView = props => {
                 }
               />
             ) : null}
-            <button
-              onClick={() => {
-                setNewPayment(true);
-              }}
+            <Fab
+              color="primary"
+              aria-label="add"
+              className={classes.fab}
+              size="small"
             >
-              +
-            </button>
+              <AddIcon
+                onClick={() => {
+                  setNewPayment(true);
+                }}
+              >
+                +
+              </AddIcon>
+            </Fab>
           </div>
         </Paper>
       </Grid>

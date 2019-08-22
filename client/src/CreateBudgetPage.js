@@ -1,6 +1,7 @@
 import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import TextField from "./TextField.js";
+import Paper from "@material-ui/core/Paper";
 
 class CreateBudgetPage extends React.Component {
   constructor(props) {
@@ -74,16 +75,18 @@ class CreateBudgetPage extends React.Component {
           name="Total Income"
           onChange={e => this.handleInputChange({ expIncome: e.target.value })}
         /> */}
-        <TextField
-          handleInputChange={this.handleInputChange}
-          name={this.state.name}
-          expIncome={this.state.expIncome}
-          duration={this.state.duration}
-          startDate={this.state.startDate}
-          handleChange={this.handleChange}
-          budgetState={this.state}
-          handleCreateBudgetClick={this.props.handleCreateBudgetClick}
-        />
+        <Paper>
+          <TextField
+            handleInputChange={this.handleInputChange}
+            name={this.state.name}
+            expIncome={this.state.expIncome}
+            duration={this.state.duration}
+            startDate={this.state.startDate}
+            handleChange={this.handleChange}
+            budgetState={this.state}
+            handleCreateBudgetClick={this.props.handleCreateBudgetClick}
+          />
+        </Paper>
         {/* <Calendar
           startDate={this.state.startDate}
           handleChange={this.handleChange}
