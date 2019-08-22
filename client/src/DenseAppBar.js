@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
-  menuButton: {
+  homeButton: {
     marginRight: theme.spacing(2)
   }
 }));
@@ -24,11 +24,12 @@ export default function DenseAppBar(props) {
         <Toolbar variant="dense">
           <IconButton
             edge="start"
-            className={classes.menuButton}
+            className={classes.homeButton}
             color="inherit"
-            aria-label="menu"
+            aria-label="home"
+            onClick={props.handleMainClick}
           >
-            <HomeIcon onClick={props.handleMainClick} />
+            <HomeIcon />
           </IconButton>
           <Typography variant="h6" color="inherit">
             {props.headerMsgs[props.view]}
