@@ -1,5 +1,6 @@
 import React from "react";
 import BudgetLine from "./BudgetLine.js";
+import CreateNewBudgetLineItem from "./CreateNewBudgetLineItem.js";
 import { makeStyles } from "@material-ui/core/styles";
 import { List } from "@material-ui/core";
 
@@ -16,7 +17,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 let CategoryListItem = props => {
-  const classes = useStyles();
   const [name, setName] = React.useState("");
   const [spending, setSpending] = React.useState(0);
 
@@ -48,23 +48,16 @@ let CategoryListItem = props => {
           })}
         </List>
         {props.budgetLineInput === props.item ? (
-          <div>
-            <label htmlFor="name">Name</label>
-            <input onChange={handleChange} name="name" value={name} />{" "}
-            <label htmlFor="spending">Expected Spending</label>
-            <input onChange={handleChange} name="spending" value={value} />
-            <button
-              onClick={() =>
-                props.postNewBudgetLine({
-                  expSpending: spending,
-                  name: name,
-                  category: props.item
-                })
-              }
-            >
-              Submit
-            </button>
-          </div>
+          <CreateNewBudgetLineItem
+            handleSubmit={() =>
+              props.postNewBudgetLine({
+                expSpending: spending,
+                name: name,
+                category: props.item
+              })
+            }
+            handleChange={handleChange}
+          />
         ) : null}
         <button
           onClick={() => {
