@@ -116,9 +116,15 @@ class SpecificBudgetPage extends React.Component {
   render() {
     return (
       <div>
-        <h2>
+        {/* <h2>
           <strong>Expected Income:</strong> ${this.props.budget.expected_income}
-        </h2>
+        </h2> */}
+        <PieChart
+          budgetLines={this.state.budgetLines}
+          budget={this.props.budget}
+          categories={this.state.categories}
+          expected_income={this.props.budget.expected_income}
+        />
         <CategoryListForm
           budgetLineInput={this.state.budgetLineInput}
           categories={this.state.categories}
@@ -129,11 +135,7 @@ class SpecificBudgetPage extends React.Component {
           postNewSpendSave={this.postNewSpendSave}
           spendSaves={this.state.spendSaves}
         />
-        <PieChart
-          budgetLines={this.state.budgetLines}
-          budget={this.props.budget}
-          categories={this.state.categories}
-        />
+
         <button onClick={this.props.handleMainClick}>Main</button>
       </div>
     );
