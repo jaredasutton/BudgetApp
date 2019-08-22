@@ -3,6 +3,10 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
+import Calendar from "./Calendar.js";
+import SubmitButton from "./SubmitButton.js";
+
+import Grid from "@material-ui/core/Grid";
 
 const timeFrame = ["1 Week", "2 Week", "1 Month"];
 
@@ -78,6 +82,16 @@ export default function OutlinedTextFields(props) {
         margin="normal"
         variant="outlined"
       />
+
+      <Calendar startDate={props.startDate} handleChange={props.handleChange} />
+
+      <Grid container justify="center">
+        <SubmitButton
+          budgetState={props.budgetState}
+          handleCreateBudgetClick={props.handleCreateBudgetClick}
+          style={{ justifyContent: "center" }}
+        />
+      </Grid>
     </form>
   );
 }

@@ -1,9 +1,6 @@
 import React from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TextField from "./TextField.js";
-import Calendar from "./Calendar.js";
-import SubmitButton from "./SubmitButton.js";
 
 class CreateBudgetPage extends React.Component {
   constructor(props) {
@@ -82,18 +79,22 @@ class CreateBudgetPage extends React.Component {
           name={this.state.name}
           expIncome={this.state.expIncome}
           duration={this.state.duration}
-        />
-        <Calendar
           startDate={this.state.startDate}
           handleChange={this.handleChange}
-        />
-        {/* <button onClick={() => this.props.handleCreateBudgetClick(this.state)}>
-          Submit
-        </button> */}
-        <SubmitButton
           budgetState={this.state}
           handleCreateBudgetClick={this.props.handleCreateBudgetClick}
         />
+        {/* <Calendar
+          startDate={this.state.startDate}
+          handleChange={this.handleChange}
+        /> */}
+        {/* <button onClick={() => this.props.handleCreateBudgetClick(this.state)}>
+          Submit
+        </button> */}
+        {/* <SubmitButton
+          budgetState={this.state}
+          handleCreateBudgetClick={this.props.handleCreateBudgetClick}
+        /> */}
       </div>
     );
   }
