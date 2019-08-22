@@ -4,6 +4,7 @@ import CreateBudgetPage from "./CreateBudgetPage.js";
 import SpecificBudgetPage from "./SpecificBudgetPage.js";
 import CreatePaymentAccountView from "./CreatePaymentAccountView.js";
 import axios from "axios";
+import DenseAppBar from "./DenseAppBar.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -102,7 +103,7 @@ class App extends React.Component {
     };
     return (
       <div>
-        <h1>{headerMsgs[this.state.view]}</h1>
+        <DenseAppBar headerMsgs={headerMsgs} view={this.state.view} />
         <img
           onClick={() => this.setState({ view: "ADD_PAYMENT_ACCOUNT" })}
           src="/gear.png"
