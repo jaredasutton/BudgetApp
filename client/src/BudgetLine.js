@@ -19,6 +19,7 @@ let BudgetLine = ({
             return `$${spendSave.amount} for ${spendSave.name}`;
           })
           .join(", ")}
+        {" - "}
         {
           <a
             href="#"
