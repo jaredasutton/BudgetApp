@@ -79,6 +79,8 @@ class CreateBudgetPage extends React.Component {
         <TextField
           handleInputChange={this.handleInputChange}
           name={this.state.name}
+          expIncome={this.state.expIncome}
+          duration={this.state.duration}
         />
         <Calendar
           startDate={this.state.startDate}

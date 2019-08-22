@@ -4,24 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 
-const currencies = [
-  {
-    value: "USD",
-    label: "$"
-  },
-  {
-    value: "EUR",
-    label: "€"
-  },
-  {
-    value: "BTC",
-    label: "฿"
-  },
-  {
-    value: "JPY",
-    label: "¥"
-  }
-];
+const timeFrame = ["1 Week", "2 Week", "1 Month"];
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -61,6 +44,37 @@ export default function OutlinedTextFields(props) {
         className={classes.textField}
         value={props.name}
         onChange={e => props.handleInputChange({ name: e.target.value })}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-select-time"
+        select
+        label="Select"
+        className={classes.textField}
+        value={props.duration}
+        onChange={e => props.handleInputChange({ duration: e.target.value })}
+        SelectProps={{
+          MenuProps: {
+            className: classes.menu
+          }
+        }}
+        helperText="Please select your time frame"
+        margin="normal"
+        variant="outlined"
+      >
+        {timeFrame.map(option => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </TextField>
+      <TextField
+        id="outlined-name"
+        label="Expected Income"
+        className={classes.textField}
+        value={props.expIncome}
+        onChange={e => props.handleInputChange({ expIncome: e.target.value })}
         margin="normal"
         variant="outlined"
       />
