@@ -92,7 +92,7 @@ const PieChartContainer = props => {
           <div
             style={{
               color:
-                props.expected_income > props.actualSpending
+                props.expected_income >= props.actualSpending
                   ? "#388e3c"
                   : "#d32f2f",
               display: "inline-block"
@@ -101,7 +101,7 @@ const PieChartContainer = props => {
             Total Spending: $
             {`${props.actualSpending} (~${Math.round(
               100 * (props.actualSpending / props.expected_income)
-            )}%)`}
+            ) || 0}%)`}
           </div>
         </h2>
         <PieChart

@@ -58,14 +58,14 @@ let CategoryListItem = props => {
           <div
             style={{
               color:
-                props.totalSpending > actualSpending ? "#388e3c" : "#d32f2f",
+                props.totalSpending >= actualSpending ? "#388e3c" : "#d32f2f",
               display: "inline-block"
             }}
           >
             Spent: $
             {`${actualSpending} (~${Math.round(
               100 * (actualSpending / props.totalSpending)
-            )}%)`}
+            ) || "0"}%)`}
           </div>
         </h2>
         <List dense={true}>
