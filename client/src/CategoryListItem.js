@@ -1,4 +1,5 @@
 import React from "react";
+import BudgetLine from "./BudgetLine.js";
 
 class CategoryListItem extends React.Component {
   constructor(props) {
@@ -32,11 +33,21 @@ class CategoryListItem extends React.Component {
           <h2>
             {this.props.item} Total: ${this.props.totalSpending}
           </h2>
-          {this.props.budgetLines.map((item, i) => {
+          {this.props.budgetLines.map((budgetLine, i) => {
             return (
-              <p key={item.name + i}>
-                {item.name}: ${item.expected_spending}
-              </p>
+              <BudgetLine
+                key={budgetLine.name + i}
+                budgetLine={budgetLine}
+                postNewSpendSave={ssObj =>
+                  this.props.postNewSpendSave(ssObj, budgetLine)
+                }
+                paymentAccounts={this.props.paymentAccounts}
+                spendSaves={
+                  this.props.spendSaves
+                    ? this.props.spendSaves[budgetLine.name]
+                    : []
+                }
+              />
             );
           })}
           {this.props.budgetLineInput === this.props.item ? (

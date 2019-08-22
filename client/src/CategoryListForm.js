@@ -18,6 +18,11 @@ const CategoryListForm = props => {
               (acc, curr) => acc + curr.expected_spending,
               0
             )}
+            postNewSpendSave={(ssObj, subcat) =>
+              props.postNewSpendSave(ssObj, subcat, item)
+            }
+            spendSaves={props.spendSaves[item]}
+            paymentAccounts={props.paymentAccounts}
           />
         );
       })}

@@ -1,9 +1,9 @@
 const SpendSave = require("../../db/models/SpendSave.js");
 
 exports.create = (req, res) => {
-  let { name, date_of, category, trans_type, subcat, acct_name } = req.body;
+  let { name, date_of, category, payment_id, subcat, amount } = req.body;
   if (
-    [name, date_of, category, trans_type, subcat, acct_name].some(
+    [name, date_of, category, payment_id, subcat, amount].some(
       value => value === undefined
     )
   ) {
@@ -13,9 +13,9 @@ exports.create = (req, res) => {
       name,
       date_of,
       category,
-      trans_type,
+      payment_id,
       subcat,
-      acct_name
+      amount
     };
     SpendSave.create(newSpendSaveObj)
       .then(insertId => {

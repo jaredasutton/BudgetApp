@@ -1,15 +1,8 @@
 const db = require("..");
 
-exports.create = ({
-  name,
-  date_of,
-  category,
-  trans_type,
-  subcat,
-  acct_name
-}) => {
-  let prepared = `INSERT INTO spend_saves (name, date_of, category, trans_type, subcat, acct_name) VALUES (?, ?, ?, ?, ?, ?)`;
-  let values = [name, date_of, category, trans_type, subcat, acct_name];
+exports.create = ({ name, date_of, category, payment_id, subcat, amount }) => {
+  let prepared = `INSERT INTO spend_saves (name, date_of, category, payment_id, subcat, amount) VALUES (?, ?, ?, ?, ?, ?)`;
+  let values = [name, date_of, category, payment_id, subcat, amount];
   return new Promise((resolve, reject) => {
     db.query(prepared, values, (err, results, fields) => {
       if (err) {

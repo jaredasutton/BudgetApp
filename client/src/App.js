@@ -124,6 +124,7 @@ class App extends React.Component {
           <SpecificBudgetPage
             handleMainClick={this.handleMainClick}
             budget={this.state.specificBudget}
+            paymentAccounts={this.state.paymentAccounts}
           />
         ) : null}
         {this.state.view === "ADD_PAYMENT_ACCOUNT" ? (
