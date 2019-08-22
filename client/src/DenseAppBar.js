@@ -28,7 +28,7 @@ export default function DenseAppBar(props) {
             color="inherit"
             aria-label="menu"
           >
-            <HomeIcon />
+            <HomeIcon onClick={props.handleMainClick} />
           </IconButton>
           <Typography variant="h6" color="inherit">
             {props.headerMsgs[props.view]}
