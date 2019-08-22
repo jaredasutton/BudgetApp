@@ -3,6 +3,7 @@ import BudgetBadge from "./BudgetBadge.js";
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import Grid from "@material-ui/core/Grid";
 
 const BudgetPage = ({ handlePlusClick, budgets, handleBudgetClick }) => {
   const useStyles = makeStyles(theme => ({
@@ -24,9 +25,11 @@ const BudgetPage = ({ handlePlusClick, budgets, handleBudgetClick }) => {
           handleBudgetClick={handleBudgetClick}
         />
       ))}
-      <Fab color="primary" aria-label="add" className={classes.fab}>
-        <AddIcon onClick={handlePlusClick} />
-      </Fab>
+      <Grid container justify="center">
+        <Fab color="primary" aria-label="add" className={classes.fab}>
+          <AddIcon onClick={handlePlusClick} />
+        </Fab>
+      </Grid>
     </div>
   );
 };

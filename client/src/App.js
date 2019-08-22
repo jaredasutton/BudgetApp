@@ -103,7 +103,11 @@ class App extends React.Component {
     };
     return (
       <div>
-        <DenseAppBar headerMsgs={headerMsgs} view={this.state.view} />
+        <DenseAppBar
+          headerMsgs={headerMsgs}
+          view={this.state.view}
+          handleMainClick={this.handleMainClick}
+        />
         <img
           onClick={() => this.setState({ view: "ADD_PAYMENT_ACCOUNT" })}
           src="/gear.png"

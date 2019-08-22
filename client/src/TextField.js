@@ -42,46 +42,48 @@ export default function OutlinedTextFields(props) {
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
-      <TextField
-        id="outlined-name"
-        label="Budget Name"
-        className={classes.textField}
-        value={props.name}
-        onChange={e => props.handleInputChange({ name: e.target.value })}
-        margin="normal"
-        variant="outlined"
-      />
-      <TextField
-        id="outlined-select-time"
-        select
-        label="Select"
-        className={classes.textField}
-        value={props.duration}
-        onChange={e => props.handleInputChange({ duration: e.target.value })}
-        SelectProps={{
-          MenuProps: {
-            className: classes.menu
-          }
-        }}
-        helperText="Please select your time frame"
-        margin="normal"
-        variant="outlined"
-      >
-        {timeFrame.map(option => (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        ))}
-      </TextField>
-      <TextField
-        id="outlined-name"
-        label="Expected Income"
-        className={classes.textField}
-        value={props.expIncome}
-        onChange={e => props.handleInputChange({ expIncome: e.target.value })}
-        margin="normal"
-        variant="outlined"
-      />
+      <Grid container justify="center">
+        <TextField
+          id="outlined-name"
+          label="Budget Name"
+          className={classes.textField}
+          value={props.name}
+          onChange={e => props.handleInputChange({ name: e.target.value })}
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField
+          id="outlined-select-time"
+          select
+          label="Select"
+          className={classes.textField}
+          value={props.duration}
+          onChange={e => props.handleInputChange({ duration: e.target.value })}
+          SelectProps={{
+            MenuProps: {
+              className: classes.menu
+            }
+          }}
+          helperText="Please select your time frame"
+          margin="normal"
+          variant="outlined"
+        >
+          {timeFrame.map(option => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          id="outlined-name"
+          label="Expected Income"
+          className={classes.textField}
+          value={props.expIncome}
+          onChange={e => props.handleInputChange({ expIncome: e.target.value })}
+          margin="normal"
+          variant="outlined"
+        />
+      </Grid>
 
       <Calendar startDate={props.startDate} handleChange={props.handleChange} />
 

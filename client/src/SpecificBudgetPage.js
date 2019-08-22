@@ -136,7 +136,7 @@ class SpecificBudgetPage extends React.Component {
           spendSaves={this.state.spendSaves}
         />
 
-        <button onClick={this.props.handleMainClick}>Main</button>
+        <button onClick={this.props.handleMainClick}>Hey There</button>
       </div>
     );
   }

@@ -4,25 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-
-const currencies = [
-  {
-    value: "USD",
-    label: "$"
-  },
-  {
-    value: "EUR",
-    label: "€"
-  },
-  {
-    value: "BTC",
-    label: "฿"
-  },
-  {
-    value: "JPY",
-    label: "¥"
-  }
-];
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -103,13 +85,15 @@ export default function CreatePaymentAccountForm(props) {
           </MenuItem>
         ))}
       </TextField>
-      <Button
-        color="primary"
-        onClick={props.handleSubmit}
-        className={classes.button}
-      >
-        Submit
-      </Button>
+      <Grid container justify="center">
+        <Button
+          color="primary"
+          onClick={props.handleSubmit}
+          className={classes.button}
+        >
+          Submit
+        </Button>
+      </Grid>
     </form>
   );
 }
