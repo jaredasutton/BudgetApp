@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TextField from "./TextField.js";
 import Calendar from "./Calendar.js";
+import SubmitButton from "./SubmitButton.js";
 
 class CreateBudgetPage extends React.Component {
   constructor(props) {
@@ -86,9 +87,13 @@ class CreateBudgetPage extends React.Component {
           startDate={this.state.startDate}
           handleChange={this.handleChange}
         />
-        <button onClick={() => this.props.handleCreateBudgetClick(this.state)}>
+        {/* <button onClick={() => this.props.handleCreateBudgetClick(this.state)}>
           Submit
-        </button>
+        </button> */}
+        <SubmitButton
+          budgetState={this.state}
+          handleCreateBudgetClick={this.props.handleCreateBudgetClick}
+        />
       </div>
     );
   }
