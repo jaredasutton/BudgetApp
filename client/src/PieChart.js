@@ -85,7 +85,25 @@ const PieChartContainer = props => {
   return (
     <div>
       <Paper className={classes.root}>
-        <h2>Expected Income: ${props.expected_income}</h2>
+        <h2>
+          <div style={{ display: "inline-block" }}>
+            Expected Income: ${props.expected_income}
+          </div>{" "}
+          <div
+            style={{
+              color:
+                props.expected_income > props.actualSpending
+                  ? "#388e3c"
+                  : "#d32f2f",
+              display: "inline-block"
+            }}
+          >
+            Total Spending: $
+            {`${props.actualSpending} (~${Math.round(
+              100 * (props.actualSpending / props.expected_income)
+            )}%)`}
+          </div>
+        </h2>
         <PieChart
           data={getChartData(props.budgetLines)}
           width={600}

@@ -37,12 +37,36 @@ let CategoryListItem = props => {
       : setName(e.target.value);
   };
   const classes = useStyles();
-
+  const actualSpending = Object.keys(props.spendSaves).reduce(
+    (acc, budgetLine) =>
+      acc +
+      props.spendSaves[budgetLine].reduce(
+        (acc, spendSave) => acc + Number(spendSave.amount),
+        0
+      ),
+    0
+  );
   return (
     <div>
       <div>
         <h2>
-          {props.item} Total: ${props.totalSpending}
+          {props.item}
+          <br />
+          <div style={{ display: "inline-block" }}>
+            Planned: ${props.totalSpending}
+          </div>{" "}
+          <div
+            style={{
+              color:
+                props.totalSpending > actualSpending ? "#388e3c" : "#d32f2f",
+              display: "inline-block"
+            }}
+          >
+            Spent: $
+            {`${actualSpending} (~${Math.round(
+              100 * (actualSpending / props.totalSpending)
+            )}%)`}
+          </div>
         </h2>
         <List dense={true}>
           {props.budgetLines.map((budgetLine, i) => {

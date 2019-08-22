@@ -7,6 +7,7 @@ class SpecificBudgetPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      actualSpending: 0,
       budgetLineInput: "",
       categories: [
         "Housing",
@@ -65,7 +66,10 @@ class SpecificBudgetPage extends React.Component {
         expSpending,
         category
       })
-      .then(({ data }) => this.getBudgetLines(this.props.budget.id))
+      .then(({ data }) => {
+        this.getBudgetLines(this.props.budget.id);
+        this.setState({ budgetLineInput: "" });
+      })
       .catch(console.error);
   }
 
@@ -75,6 +79,7 @@ class SpecificBudgetPage extends React.Component {
     axios
       .get(`/spendsave?startDate=${startDate}&endDate=${endDate}`)
       .then(({ data }) => {
+        let actualSpending = 0;
         data.forEach((spendSave, ssI) => {
           if (!newStateSS[spendSave.category]) {
             newStateSS[spendSave.category] = {};
@@ -83,8 +88,9 @@ class SpecificBudgetPage extends React.Component {
             newStateSS[spendSave.category][spendSave.subcat] = [];
           }
           newStateSS[spendSave.category][spendSave.subcat].push(spendSave);
+          actualSpending += spendSave.amount;
           if (ssI === data.length - 1) {
-            this.setState({ spendSaves: newStateSS });
+            this.setState({ spendSaves: newStateSS, actualSpending });
           }
         });
       })
@@ -124,6 +130,7 @@ class SpecificBudgetPage extends React.Component {
           budget={this.props.budget}
           categories={this.state.categories}
           expected_income={this.props.budget.expected_income}
+          actualSpending={this.state.actualSpending}
         />
         <CategoryListForm
           budgetLineInput={this.state.budgetLineInput}
