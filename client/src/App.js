@@ -10,9 +10,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      plusClicked: false,
-      createBudgetClicked: false,
-      specificBudgetClicked: false,
       view: "ALL_BUDGETS",
       budgets: [],
       specificBudget: null,
@@ -50,10 +47,17 @@ class App extends React.Component {
     axios
       .post("/budget", { startDate, endDate, name, expIncome })
       .then(({ data }) => {
-        this.setState({
-          view: "SPECIFIC_BUDGET",
-          specificBudget: data
-        });
+        axios
+          .get("/budget")
+          .then(response => {
+            this.setState({
+              view: "SPECIFIC_BUDGET",
+              specificBudget: response.data.filter(
+                budget => budget.id === data.id
+              )[0]
+            });
+          })
+          .catch(console.error);
       })
       .catch(console.error);
   }
